@@ -1,5 +1,6 @@
 body {
   width: 100%;
+  height: 600px;
   min-height: 100%;
   background: url('./Static/img/night-background.jpg')  no-repeat center center fixed;
   background-size: cover;
@@ -27,6 +28,7 @@ body {
   padding: 20px;
   background: rgba(255, 255, 255, 0.08);  
   box-shadow: 0px 0px 74px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
 .note {
@@ -46,3 +48,12 @@ body {
 .note:hover {
   background: rgba(255, 255, 255, 0.10);
 }
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+}
+
+@keyframes fadeIn { from {opacity: 0} to {opacity: 1}};

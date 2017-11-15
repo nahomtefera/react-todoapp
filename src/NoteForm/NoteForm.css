@@ -1,0 +1,38 @@
+.form-wrapper {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.note-input {
+    box-sizing: border-box;
+    padding: 15px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.23);
+    border: none;
+    font-family: Roboto;
+    font-size: 1.2em;
+    color: white;
+}
+
+.note-button {
+    padding: 15px;
+    box-sizing: border-box;    
+    border: none;
+    font-family: Roboto;    
+    font-size: 1.2em;
+    color: white;
+    background: rgba(255, 255, 255, 0.53);   
+    cursor: pointer; 
+}
+
+.note-button:hover {
+    background: #76E276;  
+    color: white;      
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white;
+}
+
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  

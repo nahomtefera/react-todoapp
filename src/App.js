@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Note from './Note/Note';
+import NoteForm from './NoteForm/NoteForm'
 
 class App extends Component {
 
@@ -20,30 +21,31 @@ class App extends Component {
 
   render() {
     return (
-      <div className="notes-wrapper">
+      <div>
+        <div className="notes-wrapper">
 
-        <div className="notes-header">
-          <div className="heading"> React and Firebase </div>
+          <div className="notes-header">
+            <div className="heading"> React and Firebase </div>
+          </div>
+
+          <div className="notes-body">
+            {
+              this.state.notes.map((note)=>{
+                return (
+                  <Note 
+                    className="note fade-in"
+                    noteContent = {note.noteContent}
+                    noteId = {note.id}
+                    key = {note.id}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
-
-        <div className="notes-body">
-          {
-            this.state.notes.map((note)=>{
-              return (
-                <Note 
-                  className="note"
-                  noteContent = {note.noteContent}
-                  noteId = {note.id}
-                  key = {note.id}
-                />
-              )
-            })
-          }
-        </div>
-
         <div className="notes-footer">
-
-        </div>
+            <NoteForm />
+        </div>        
       </div>
     );
   }
