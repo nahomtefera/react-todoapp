@@ -43,10 +43,21 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
+  overflow: auto;
+  position: relative;
+  min-height: 40px;
 }
 
 .note:hover {
   background: rgba(255, 255, 255, 0.10);
+}
+
+.remove-note {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  color: #fff;
+  cursor: pointer;
 }
 
 .fade-in {

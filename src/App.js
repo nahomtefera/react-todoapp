@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Note from './Note/Note';
 import NoteForm from './NoteForm/NoteForm'
+import DB_CONFIG from './Config/config'
 
 class App extends Component {
 
@@ -12,20 +13,17 @@ class App extends Component {
     // We are going to set up the React state of our component
     this.state = {
       notes: [
-        {id: 1, noteContent: "what's up "},
-        {id: 2, noteContent: " duuude"}
       ],
 
     }
 
-    this.addNote = this.addNote.bind(this);
-    
+    this.addNote = this.addNote.bind(this);    
   }
 
   addNote(note){
     const prevNotes = this.state.notes;
       // push the note to the notes array
-    prevNotes.push({id: prevNotes.length+1, noteContent: note});
+    prevNotes.push({id: prevNotes.length + 1, noteContent: note});
 
     this.setState({
       notes: prevNotes,

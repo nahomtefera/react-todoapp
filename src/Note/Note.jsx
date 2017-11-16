@@ -13,6 +13,7 @@ class Note extends Component {
     render(props) {
         return(
             <div className="note fade-in">
+                <i className="fa fa-times remove-note" aria-hidden="true"></i>
                 <p className="note-content"> {this.noteContent} </p>
             </div>
         );
