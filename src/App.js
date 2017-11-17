@@ -1,33 +1,67 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Note from './Note/Note';
-import NoteForm from './NoteForm/NoteForm'
-import DB_CONFIG from './Config/config'
+import NoteForm from './NoteForm/NoteForm';
+import DB_CONFIG from './Config/config';
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    this.addNote = this.addNote.bind(this);      
+    this.remNote = this.remNote.bind(this);  
+
+    // Initialize Firebase
+    this.app = firebase.initializeApp(DB_CONFIG);
+    this.database = this.app.database().ref().child('notes');
+
 
     // We are going to set up the React state of our component
     this.state = {
       notes: [
       ],
-
-    }
-
-    this.addNote = this.addNote.bind(this);    
+    }    
   }
 
-  addNote(note){
-    const prevNotes = this.state.notes;
-      // push the note to the notes array
-    prevNotes.push({id: prevNotes.length + 1, noteContent: note});
+  componentWillMount() {
+    const previousNotes = this.state.notes;
 
-    this.setState({
-      notes: prevNotes,
-    })
+    this.database.on('child_added', snap => {
+      previousNotes.push({
+        id: snap.key,
+        noteContent: snap.val().noteContent
+      })
+
+      this.setState({
+        notes: previousNotes
+      })    
+
+    });
+
+    this.database.on('child_removed', snap => {
+      for(var i = 0; i <previousNotes.length; i++) {
+        if(previousNotes[i].id === snap.key ) {
+          previousNotes.splice(i, 1);
+        }
+      }
+
+      this.setState({
+        notes: previousNotes
+      });
+    });
+
+
+  }
+
+  addNote(note) {
+    this.database.push().set({noteContent: note})
+  }
+
+  remNote(note) {
+    
   }
 
   render() {
@@ -43,12 +77,11 @@ class App extends Component {
             {
               this.state.notes.map((note)=>{
                 return (
-                  <Note 
-                    className="note fade-in"
-                    noteContent = {note.noteContent}
-                    noteId = {note.id}
-                    key = {note.id}
-                  />
+                  <Note className="note fade-in" 
+                  remNote={this.remNote} 
+                  noteContent={note.noteContent} 
+                  noteId={note.id} 
+                  key={note.id}/>
                 )
               })
             }

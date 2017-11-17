@@ -1,4 +1,4 @@
-export const DB_CONFIG = {
+const DB_CONFIG = {
     apiKey: "AIzaSyDkv5HOnpLppgqLPez955upajdCkvLztU8",
     authDomain: "todoapp-react-7c659.firebaseapp.com",
     databaseURL: "https://todoapp-react-7c659.firebaseio.com",
@@ -6,3 +6,5 @@ export const DB_CONFIG = {
     storageBucket: "todoapp-react-7c659.appspot.com",
     messagingSenderId: "473828090788"
 };
+
+export default DB_CONFIG;
