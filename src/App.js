@@ -60,8 +60,9 @@ class App extends Component {
     this.database.push().set({noteContent: note})
   }
 
-  remNote(note) {
-    
+  remNote(noteId) {
+    console.log("yo, it's fine, look what I got: " + noteId);
+    this.database.child(noteId).remove();
   }
 
   render() {
